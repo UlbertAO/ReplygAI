@@ -3,19 +3,40 @@ const REPLY_BUTTON_CLASS = "grok-ai-reply-button";
 function createReplyButton(): HTMLButtonElement {
   const button = document.createElement("button");
   button.className = REPLY_BUTTON_CLASS;
-  button.innerHTML = "AI Reply";
+  button.style.background = "none";
+  button.style.border = "none";
+  button.style.padding = "0";
+  button.style.cursor = "pointer";
+  button.title = "AI Reply";
+
+  const img = document.createElement("img");
+  img.src = chrome.runtime.getURL("icon.png");
+  console.log("Icon URL:", img.src);
+  img.alt = "AI Reply";
+  img.style.width = "20px";
+  img.style.height = "20px";
+  img.style.display = "block";
+
+  button.appendChild(img);
   return button;
 }
 
-function handleReplyClick(postContent: string, author: string): void {
-  console.log("Reply button clicked for post:", postContent);
+function handleReplyClick(
+  data: { content: string; author: string },
+  article: Element
+): void {
+  console.log("Reply button clicked for post:", data);
+
+  // Click the native reply button first
+  const nativeReplyButton = article.querySelector('[data-testid="reply"]');
+  (nativeReplyButton as HTMLElement)?.click();
 
   chrome.runtime.sendMessage(
     {
       type: "GENERATE_REPLY",
       data: {
-        content: postContent,
-        author,
+        content: data.content,
+        author: data.author,
         timestamp: new Date().toISOString(),
       },
     },
@@ -43,8 +64,12 @@ function injectReplyButtons(): void {
       const author =
         article.querySelector('[data-testid="User-Name"]')?.textContent || "";
 
+      const data = {
+        content: tweetText,
+        author: author,
+      };
       replyButton.addEventListener("click", () =>
-        handleReplyClick(tweetText, author)
+        handleReplyClick(data, article)
       );
 
       // Find the native reply button container and insert our button next to it
