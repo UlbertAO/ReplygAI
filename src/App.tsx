@@ -60,15 +60,13 @@ function App() {
       <h1>ReplygAI</h1>
       <p>
         Successfully authenticated! You can now use the AI reply feature on
-        supported websites.
+        X/Twitter.
       </p>
       <div className="instruction-container">
         <h2>How to use:</h2>
         <ol>
           <li>Navigate to Twitter/X</li>
-          <li>
-            Look for the "🤖 AI Reply" button next to regular reply buttons
-          </li>
+          <li>Look for the LOGO button next to regular reply buttons</li>
           <li>Click it to generate an AI-powered response</li>
           <li>Edit the generated reply if needed and post!</li>
         </ol>
@@ -80,7 +78,7 @@ function App() {
   ) : (
     <div className="app-container">
       <h1>ReplygAI</h1>
-      <p>Please enter your Grok AI API key to continue:</p>
+      <p>Please enter your Open Router API key to continue:</p>
       <form onSubmit={handleSubmit} className="api-key-form">
         <input
           type="password"
@@ -100,8 +98,12 @@ function App() {
       </form>
       <p className="help-text">
         Don't have an API key? Visit{" "}
-        <a href="https://x.ai" target="_blank" rel="noopener noreferrer">
-          x.ai
+        <a
+          href="https://openrouter.ai/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          openrouter.ai
         </a>{" "}
         to get one.
       </p>

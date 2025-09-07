@@ -1,13 +1,13 @@
 export const STORAGE_KEYS = {
-  API_KEY: "grokAI_apiKey",
+  API_KEY: "OPENROUTER_API_KEY",
 };
 
 export const API_ENDPOINTS = {
-  GROK_AI: "",
+  OPENROUTER_API_KEY: "https://openrouter.ai/api/v1/chat/completions ",
 };
 
 export const APP_CONFIG = {
-  MINIMUM_API_KEY_LENGTH: 2,
+  MINIMUM_API_KEY_LENGTH: 32,
   MAX_REPLY_LENGTH: 280,
 };
 
