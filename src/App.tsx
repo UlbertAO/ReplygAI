@@ -13,14 +13,17 @@ function App() {
   const [apiKeyInput, setApiKeyInput] = useState("");
 
   useEffect(() => {
-    const storedApiKey = AuthService.getStoredApiKey();
-    if (storedApiKey) {
-      setAuthState({
-        isAuthenticated: true,
-        apiKey: storedApiKey,
-        error: null,
-      });
-    }
+    const fetchApiKey = async () => {
+      const storedApiKey = await AuthService.getStoredApiKey();
+      if (storedApiKey) {
+        setAuthState({
+          isAuthenticated: true,
+          apiKey: storedApiKey,
+          error: null,
+        });
+      }
+    };
+    fetchApiKey();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -42,8 +45,8 @@ function App() {
     }
   };
 
-  const handleLogout = () => {
-    AuthService.clearStoredApiKey();
+  const handleLogout = async () => {
+    await AuthService.clearStoredApiKey();
     setAuthState({
       isAuthenticated: false,
       apiKey: null,

@@ -12,7 +12,14 @@ export class AuthService {
       }
 
       // Store the API key
-      localStorage.setItem(STORAGE_KEYS.API_KEY, apiKey);
+      await chrome.storage.sync.set({
+        [STORAGE_KEYS.API_KEY]: apiKey,
+      });
+
+      const stored = await this.getStoredApiKey();
+      if (!stored) {
+        throw new Error("API key storage verification failed");
+      }
 
       return {
         success: true,
@@ -22,21 +29,37 @@ export class AuthService {
       console.error("Error storing API key:", error);
       return {
         success: false,
-        message: ERROR_MESSAGES.NETWORK_ERROR,
+        message:
+          error instanceof Error ? error.message : ERROR_MESSAGES.NETWORK_ERROR,
       };
     }
   }
 
-  static getStoredApiKey(): string | null {
-    return localStorage.getItem(STORAGE_KEYS.API_KEY);
+  static async getStoredApiKey(): Promise<string | null> {
+    try {
+      const result = await chrome.storage.sync.get(STORAGE_KEYS.API_KEY);
+      return result[STORAGE_KEYS.API_KEY] || null;
+    } catch (error) {
+      console.error("Error retrieving API key:", error);
+      return null;
+    }
   }
 
-  static clearStoredApiKey(): void {
-    localStorage.removeItem(STORAGE_KEYS.API_KEY);
+  static async clearStoredApiKey(): Promise<void> {
+    try {
+      await chrome.storage.sync.remove(STORAGE_KEYS.API_KEY);
+    } catch (error) {
+      console.error("Error clearing API key:", error);
+    }
   }
 
-  static isAuthenticated(): boolean {
-    const apiKey = this.getStoredApiKey();
-    return !!apiKey && apiKey.length >= APP_CONFIG.MINIMUM_API_KEY_LENGTH;
+  static async isAuthenticated(): Promise<boolean> {
+    try {
+      const apiKey = await this.getStoredApiKey();
+      return !!apiKey && apiKey.length >= APP_CONFIG.MINIMUM_API_KEY_LENGTH;
+    } catch (error) {
+      console.error("Error checking authentication:", error);
+      return false;
+    }
   }
 }
