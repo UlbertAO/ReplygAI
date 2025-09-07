@@ -1,42 +1,96 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.app-container {
+  width: 360px;
+  padding: 24px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h1 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #1d9bf0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.api-key-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 24px 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.api-key-input {
+  padding: 8px 12px;
+  border: 2px solid #e8e8e8;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.card {
-  padding: 2em;
+.api-key-input:focus {
+  border-color: #1d9bf0;
+  outline: none;
 }
 
-.read-the-docs {
-  color: #888;
+.submit-button,
+.logout-button {
+  padding: 10px 16px;
+  background-color: #1d9bf0;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submit-button:hover,
+.logout-button:hover {
+  background-color: #1a8cd8;
+}
+
+.error-message {
+  color: #e0245e;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.help-text {
+  font-size: 14px;
+  color: #536471;
+  margin-top: 16px;
+}
+
+.help-text a {
+  color: #1d9bf0;
+  text-decoration: none;
+}
+
+.help-text a:hover {
+  text-decoration: underline;
+}
+
+.instruction-container {
+  text-align: left;
+  color: black;
+  margin: 24px 0;
+  padding: 16px;
+  background-color: #f7f9f9;
+  border-radius: 12px;
+}
+
+.instruction-container h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.instruction-container ol {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.instruction-container li {
+  margin: 8px 0;
+  font-size: 14px;
+  line-height: 1.4;
 }

@@ -2,12 +2,31 @@
   "manifest_version": 3,
   "name": "ReplygAI",
   "version": "1.0.0",
+  "description": "AI-powered replies using Grok AI for X posts",
   "icons": {
-    "48": "icon.png"
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
   },
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
   },
-  "permissions": ["scripting"],
-  "host_permissions": ["http://*/*", "https://*/*"]
+  "permissions": ["scripting", "activeTab", "storage"],
+  "host_permissions": ["https://x.com/home"],
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/home"],
+      "js": ["contentScript.js"],
+      "css": ["contentStyle.css"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
 }
