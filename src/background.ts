@@ -4,6 +4,7 @@ console.log("Background script loaded at:", new Date().toISOString());
 
 chrome.runtime.onInstalled.addListener(() => {
   console.log("Extension installed and background script loaded");
+  chrome.action.openPopup();
 });
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
