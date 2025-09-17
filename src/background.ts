@@ -28,4 +28,13 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     // Return true to keep the message channel open for the async response
     return true;
   }
+  if (message.type === "SHOW_ERROR_UI") {
+    chrome.storage.local.set(
+      { apiKeyError: "Your API key is invalid or missing." },
+      () => {
+        chrome.action.openPopup();
+      }
+    );
+    return true;
+  }
 });

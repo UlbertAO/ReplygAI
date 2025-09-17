@@ -20,9 +20,10 @@
   "host_permissions": ["https://x.com/home"],
   "content_scripts": [
     {
-      "matches": ["https://x.com/home"],
+      "matches": ["https://x.com/*"],
       "js": ["contentScript.js"],
-      "css": ["contentStyle.css"]
+      "css": ["contentStyle.css"],
+      "run_at": "document_end"
     }
   ],
   "background": {

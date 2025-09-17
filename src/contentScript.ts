@@ -88,6 +88,12 @@ function handleReplyClick(
             if (!success) {
               console.error("Failed to insert reply.");
             }
+          } else {
+            console.error("Error in response:", response.error);
+            chrome.runtime.sendMessage({
+              type: "SHOW_ERROR_UI",
+              error: response.error,
+            });
           }
         }
       );
