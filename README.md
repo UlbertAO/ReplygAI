@@ -1,69 +1,134 @@
-# React + TypeScript + Vite
+# ReplygAI - AI-Powered Reply Generator for Twitter/X
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ReplygAI is a Chrome extension that helps you generate intelligent, context-aware replies for Twitter/X posts using AI. With a simple click, generate relevant responses while maintaining your voice.
 
-Currently, two official plugins are available:
+<p align="center" style="background-color:#1a1a1a; padding:20px;">
+  <img src="public/full_icon.png" alt="ReplygAI Logo" width="310" height="95">
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- 🤖 One-click AI-powered reply generation
+- 🔄 Regenerate responses until you're satisfied
+- 🔒 Secure API key storage
+- 🎯 Context-aware responses based on tweet content
+- 🔌 Seamless Twitter/X integration
+- 🛡️ Privacy-focused design
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Installation
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Clone this repository:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+   ```bash
+   git clone https://github.com/UlbertAO/ReplygAI.git
+   cd ReplygAI
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Build the extension:
+
+   ```bash
+   npm run build
+   ```
+
+4. Load the extension in Chrome:
+   - Open Chrome and go to `chrome://extensions/`
+   - Enable "Developer mode"
+   - Click "Load unpacked"
+   - Select the `dist` folder from your build
+
+## Usage
+
+1. Click the ReplygAI extension icon in your Chrome toolbar
+2. Enter your AI service API key in the popup
+3. Navigate to Twitter/X
+4. Look for the ReplygAI icon next to the reply button on any tweet
+5. Click the icon to generate an AI-powered reply
+6. Edit the generated reply if needed
+7. Post your reply!
+
+Need a different response? Click the ReplygAI icon in the reply modal to regenerate.
+
+## Configuration
+
+The extension requires an API key from OpenRouter to access various AI models. OpenRouter provides a unified API to access multiple language models including:
+
+- Anthropic Claude
+- Google PaLM
+- Meta Llama
+- OpenAI GPT models
+- DeepSeek
+- And more
+
+To get started:
+
+1. Visit [OpenRouter](https://openrouter.ai/)
+2. Create an account and obtain your API key
+3. Store your API key securely through the extension popup interface
+
+Your API key is stored securely in Chrome's extension storage and is only used to authenticate requests to OpenRouter's API.
+
+## Development
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm (v9 or higher)
+- Chrome browser
+
+### Local Development
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Start development build:
+
+   ```bash
+   npm run dev
+   ```
+
+3. Build for production:
+   ```bash
+   npm run build
+   ```
+
+### Project Structure
+
+```
+ReplygAI/
+├── src/                # Source files
+│   ├── components/    # React components
+│   ├── services/      # Core services
+│   └── config/        # Configuration files
+├── public/            # Static assets
+└── dist/             # Build output
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Security
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- API keys are stored securely in Chrome's extension storage
+- No data is sent to external servers except the AI service
+- All communication with Twitter/X is local to the browser
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## Support
+
+If you encounter any issues or have questions:
+
+- Open an issue in this repository
+- Contact the maintainers
