@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { API_ENDPOINTS, ERROR_MESSAGES } from "../config";
+import { API_ENDPOINTS, ERROR_MESSAGES, STORAGE_KEYS } from "../config";
 import type { GrokAIResponse, PostData } from "../types";
 import { AuthService } from "./AuthService";
 
@@ -8,7 +8,7 @@ export class GrokAIService {
     endpoint: string,
     data: any
   ): Promise<Response> {
-    const apiKey = await AuthService.getStoredApiKey();
+    const apiKey = await AuthService.getStoredKeyValue(STORAGE_KEYS.API_KEY);
     if (!apiKey) {
       throw new Error(ERROR_MESSAGES.UNAUTHORIZED);
     }
@@ -37,7 +37,7 @@ export class GrokAIService {
                 \n\n**Instructions**:
                 \n1. **Tone Analysis**: Analyze the post to determine its tone: **funny** (humor, sarcasm, puns), **professional** (formal, respectful), **neutral** (casual, conversational), or **technical** (jargon, code-related). Default to neutral if ambiguous.
                 \n2. **Reply Generation**: Generate a concise reply (1-2 sentences, max 280 characters) that mirrors or complements the tone, is contextually relevant, and complies with X’s guidelines. Avoid offensive language. For sensitive topics, reply neutrally. For funny posts, use wit; for professional, be formal; for technical, be precise.
-                \n3. **Output**: Return plain text for the X reply box.
+                \n3. **Output should only contain**: Return plain text for the X reply box.
                 \n\n**Post Content**: ${postData.content.trim()}`,
             },
           ],
@@ -45,8 +45,11 @@ export class GrokAIService {
       );
       if (!response.ok) {
         if (response.status === 401) {
-          await AuthService.clearStoredApiKey();
+          await AuthService.clearStoredKeyvalue(STORAGE_KEYS.API_KEY);
           throw new Error(ERROR_MESSAGES.UNAUTHORIZED);
+        }
+        if (response.status === 429) {
+          throw new Error(ERROR_MESSAGES.TOO_MANY_REQUEST);
         }
         throw new Error(ERROR_MESSAGES.API_ERROR);
       }

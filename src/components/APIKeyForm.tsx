@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AuthService } from "../services/AuthService";
 import type { AuthState } from "../types";
+import { STORAGE_KEYS } from "../config";
 
 type APIKeyFormProps = {
   authState: AuthState;
@@ -12,7 +13,10 @@ const APIKeyForm = ({ authState, setAuthState }: APIKeyFormProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await AuthService.validateAndStoreApiKey(apiKeyInput);
+    const response = await AuthService.validateAndStoreKeyValue(
+      STORAGE_KEYS.API_KEY,
+      apiKeyInput
+    );
 
     if (response.success) {
       setAuthState({

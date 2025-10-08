@@ -7,13 +7,17 @@ export const API_ENDPOINTS = {
 };
 
 export const APP_CONFIG = {
-  MINIMUM_API_KEY_LENGTH: 32,
+  MINIMUM_KEY_LENGTH: 2,
+  MINIMUM_KEY_VALUE_LENGTH: 2,
   MAX_REPLY_LENGTH: 280,
 };
 
 export const ERROR_MESSAGES = {
-  INVALID_API_KEY: "Invalid API key. Please check and try again.",
+  INVALID_KEY: "Invalid storage key.",
+  INVALID_KEY_VALUE: "Invalid key's value. Please check and try again.",
   NETWORK_ERROR: "Network error. Please check your connection.",
   API_ERROR: "Error communicating with Grok AI. Please try again.",
   UNAUTHORIZED: "Unauthorized. Please check your API key.",
+  TOO_MANY_REQUEST: "Too Many Requests. Please try after some time.",
+  DEFAULT_ERROR: "An unexpected error occurred. Please try again.",
 };

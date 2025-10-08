@@ -1,3 +1,4 @@
+import { STORAGE_KEYS } from "../config";
 import { AuthService } from "../services/AuthService";
 import type { AuthState } from "../types";
 
@@ -7,7 +8,8 @@ type GeneralInfoProps = {
 
 const GeneralInfo = ({ setAuthState }: GeneralInfoProps) => {
   const handleLogout = async () => {
-    await AuthService.clearStoredApiKey();
+    await AuthService.clearStoredKeyvalue(STORAGE_KEYS.API_KEY);
+
     setAuthState({
       isAuthenticated: false,
       apiKey: null,
