@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { API_ENDPOINTS, ERROR_MESSAGES, STORAGE_KEYS } from "../config";
 import type { GrokAIResponse, PostData } from "../types";
+import { APIErrorHandler } from "../utils/errorHandler";
 import { AuthService } from "./AuthService";
 
-export class GrokAIService {
+export class AIService {
   private static async makeRequest(
     endpoint: string,
     data: any
@@ -25,10 +26,11 @@ export class GrokAIService {
 
   static async generateReply(postData: PostData): Promise<GrokAIResponse> {
     try {
+      const modelId = await AuthService.getCurrentModel();
       const response = await this.makeRequest(
         API_ENDPOINTS.OPENROUTER_API_KEY,
         {
-          model: "deepseek/deepseek-chat-v3.1:free",
+          model: modelId,
           messages: [
             {
               role: "user",
@@ -43,16 +45,11 @@ export class GrokAIService {
           ],
         }
       );
+
       if (!response.ok) {
-        if (response.status === 401) {
-          await AuthService.clearStoredKeyvalue(STORAGE_KEYS.API_KEY);
-          throw new Error(ERROR_MESSAGES.UNAUTHORIZED);
-        }
-        if (response.status === 429) {
-          throw new Error(ERROR_MESSAGES.TOO_MANY_REQUEST);
-        }
-        throw new Error(ERROR_MESSAGES.API_ERROR);
+        await APIErrorHandler.handleError(response);
       }
+
       const data = await response.json();
       return {
         reply: data.choices[0]?.message?.content || "",

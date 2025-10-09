@@ -1,5 +1,6 @@
 import { STORAGE_KEYS, ERROR_MESSAGES, APP_CONFIG } from "../config";
-import type { APIResponse } from "../types";
+import type { APIResponse, AIModel } from "../types";
+import modelData from "../data/models.json";
 
 export class AuthService {
   static async validateAndStoreKeyValue(
@@ -29,6 +30,7 @@ export class AuthService {
       console.log("Key stored successfully");
 
       const stored = await this.getStoredKeyValue(key);
+      console.log("Stored value:", stored);
       if (!stored) {
         throw new Error("key storage verification failed");
       }
@@ -49,7 +51,7 @@ export class AuthService {
 
   static async getStoredKeyValue(key: string): Promise<string | null> {
     try {
-      const result = await chrome.storage.sync.get(STORAGE_KEYS.API_KEY);
+      const result = await chrome.storage.sync.get(key);
       return result[key] || null;
     } catch (error) {
       console.error("Error retrieving key:", error);
@@ -73,5 +75,21 @@ export class AuthService {
       console.error("Error checking authentication:", error);
       return false;
     }
+  }
+  static async getCurrentModel(): Promise<string> {
+    const models = this.getAvailableModels();
+
+    const currentModel = await this.getStoredKeyValue(
+      STORAGE_KEYS.SELECTED_MODEL
+    );
+    if (currentModel && models.find((model) => model.id == currentModel)) {
+      return currentModel;
+    } else {
+      return models[0].id;
+    }
+  }
+
+  static getAvailableModels(): AIModel[] {
+    return modelData.models;
   }
 }

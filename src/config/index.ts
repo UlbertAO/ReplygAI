@@ -1,5 +1,6 @@
 export const STORAGE_KEYS = {
   API_KEY: "OPENROUTER_API_KEY",
+  SELECTED_MODEL: "SELECTED_MODEL",
 };
 
 export const API_ENDPOINTS = {

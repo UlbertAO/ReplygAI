@@ -1,4 +1,4 @@
-import { GrokAIService } from "./services/GrokAIService";
+import { AIService } from "./services/AIService";
 
 console.log("Background script loaded at:", new Date().toISOString());
 
@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     // Handle the async operation
     (async () => {
       try {
-        const response = await GrokAIService.generateReply(message.data);
+        const response = await AIService.generateReply(message.data);
         console.log("Generated response:", response);
         sendResponse(response);
       } catch (error) {
@@ -29,12 +29,11 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     return true;
   }
   if (message.type === "SHOW_ERROR_UI") {
-    chrome.storage.local.set(
-      { apiKeyError: "Your API key is invalid or missing." },
-      () => {
-        chrome.action.openPopup();
-      }
-    );
+    chrome.storage.local.set({ lastError: message.error }, () => {
+      chrome.action.openPopup();
+      sendResponse({ success: true });
+    });
+
     return true;
   }
 });
