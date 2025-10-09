@@ -22,6 +22,12 @@ export interface GrokAIResponse {
   error?: string;
 }
 
+export interface AIModel {
+  id: string;
+  name: string;
+  description: string;
+}
+
 // export interface GrokAIConfig {
 //   apiKey: string;
 // }

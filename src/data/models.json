@@ -1,0 +1,154 @@
+{
+  "models": [
+    {
+      "id": "openai/gpt-4o",
+      "name": "GPT-4o (Omni, multimodal low-latency)",
+      "description": "OpenAI’s all-modal model handling text, audio, vision, video with low latency (responses in ~232ms in some cases). Ideal for interactive, real-time multimodal chat, voice assistants, and mixed media applications."
+    },
+    {
+      "id": "openai/gpt-4-turbo",
+      "name": "GPT-4 Turbo (fast version of GPT-4)",
+      "description": "High-performance variant of GPT-4 optimized for faster responses and cost efficiency. Good for conversational agents, code generation, reasoning tasks with moderate latency."
+    },
+    {
+      "id": "openai/gpt-3.5-turbo",
+      "name": "GPT-3.5 Turbo (lightweight & fast)",
+      "description": "A lighter, faster model variant suitable for general-purpose chat, text generation, and instruction following at lower cost and latency. Useful when full GPT-4 power is not needed."
+    },
+    {
+      "id": "anthropic/claude-3-opus",
+      "name": "Claude 3 Opus (deep reasoning)",
+      "description": "Anthropic’s flagship within Claude 3, emphasizing strong reasoning, deep analysis, and extended context handling. Suitable for research, summarization, and complex tasks."
+    },
+    {
+      "id": "anthropic/claude-3-sonnet",
+      "name": "Claude 3 Sonnet (balanced)",
+      "description": "Balanced version in Claude 3 family, trading off some reasoning depth for faster responses. Good for general chat, content generation, Q&A."
+    },
+    {
+      "id": "anthropic/claude-3-haiku",
+      "name": "Claude 3 Haiku (fast & lightweight)",
+      "description": "Lightweight Claude variant optimized for faster responses. Best when throughput and lower latency matter, e.g. moderation, chat services."
+    },
+    {
+      "id": "google/gemini-2.5-pro-preview",
+      "name": "Google Gemini 2.5 Pro (reasoning / agentic preview)",
+      "description": "Google’s preview reasoning model that can “think” (pause & deliberate) before output. Ideal for agentic workflows, planning, complex reasoning tasks."
+    },
+    {
+      "id": "google/gemini-flash-1.5",
+      "name": "Gemini Flash 1.5 (efficient multimodal)",
+      "description": "A lighter, efficient version of Gemini optimized for throughput and lower latency. Good for high-volume use, mixed text/image workloads."
+    },
+    {
+      "id": "meta-llama/llama-3-8b-instruct",
+      "name": "LLaMA 3 8B Instruct",
+      "description": "Open-weights / community model (8B parameters) fine-tuned for instruction following. Good for embedding, lightweight inference, edge deployment."
+    },
+    {
+      "id": "meta-llama/llama-3-70b-instruct",
+      "name": "LLaMA 3 70B Instruct",
+      "description": "Larger instruction-tuned LLaMA model with stronger capacity. Better for heavy reasoning, summarization, and content generation with more nuance."
+    },
+    {
+      "id": "meta-llama/llama-4-scout:free",
+      "name": "LLaMA 4 Scout (free tier)",
+      "description": "A free variant in the LLaMA 4 line with balanced performance. Good for experimentation, prototyping, and free-tier deployments."
+    },
+    {
+      "id": "meta-llama/llama-4-maverick:free",
+      "name": "LLaMA 4 Maverick (free tier)",
+      "description": "Another LLaMA 4 variant, possibly with different tradeoffs (e.g. more capacity or different finetuning). Useful for more challenging tasks under free constraints."
+    },
+    {
+      "id": "deepseek/deepseek-r1",
+      "name": "DeepSeek R1",
+      "description": "DeepSeek’s R1 model. Suitable for open-domain generation, general chat, and scalable deployments."
+    },
+    {
+      "id": "deepseek/deepseek-r1-distill-llama-70b",
+      "name": "DeepSeek R1 Distill LLaMA 70B",
+      "description": "Distilled variant of DeepSeek from LLaMA 70B backbone. Offers a balance between capability and speed."
+    },
+    {
+      "id": "deepseek/deepseek-v3-base:free",
+      "name": "DeepSeek V3 Base (free)",
+      "description": "Free base variant of DeepSeek’s V3 line. Useful for lightweight usage and testing."
+    },
+    {
+      "id": "deepseek/deepseek-v3.2-exp",
+      "name": "DeepSeek V3.2 Experimental",
+      "description": "Experimental version of DeepSeek V3.2 with newer features. For exploring new capabilities or bleeding-edge features."
+    },
+    {
+      "id": "mistralai/mistral-8b",
+      "name": "Mistral 8B",
+      "description": "Open-source 8B model known for good performance/efficiency. Good for instruction tasks, embeddings, chat."
+    },
+    {
+      "id": "mistralai/mixtral-8x7b-instruct",
+      "name": "Mixtral 8×7B Instruct",
+      "description": "A hybrid ensemble / mixture model built from Mistral architectures for instruction following. Useful when you want more capacity but still maintain speed."
+    },
+    {
+      "id": "microsoft/wizardlm-2-8x22b",
+      "name": "WizardLM 2 8×22B",
+      "description": "WizardLM’s instruction-tuned model, suitable for complex reasoning, chain-of-thought tasks, and content generation."
+    },
+    {
+      "id": "amazon/nova-lite-v1",
+      "name": "Amazon Nova Lite v1",
+      "description": "Amazon’s lightweight model variant, likely optimized for cost, lower-latency serving, and deployment in constrained environments."
+    },
+    {
+      "id": "amazon/nova-micro-v1",
+      "name": "Amazon Nova Micro v1",
+      "description": "Even smaller Nova variant, useful for ultra-low latency, on-device or edge scenarios."
+    },
+    {
+      "id": "cohere/command-r-08-2024",
+      "name": "Cohere Command R (2024)",
+      "description": "Cohere’s instruction-tuned model. Good for generation, embeddings, summarization, and text understanding."
+    },
+    {
+      "id": "openrouter/quasar-alpha",
+      "name": "Quasar Alpha (OpenRouter)",
+      "description": "OpenRouter’s alpha model, likely tuned for routing/inference on their platform. Useful for direct integration in OpenRouter settings."
+    },
+    {
+      "id": "qwen/qwen-2.5-coder-32b-instruct",
+      "name": "Qwen 2.5 Coder 32B",
+      "description": "Qwen’s 32B model tuned for coding and developer tasks. Ideal when you want strong performance on code generation, debugging, or code-related reasoning."
+    },
+    {
+      "id": "qwen/qwen-2.5-7b-instruct",
+      "name": "Qwen 2.5 7B",
+      "description": "The smaller 7B version of Qwen 2.5, good for general instruction tasks at lower resource cost."
+    },
+    {
+      "id": "qwen/qwen-2.5-72b-instruct",
+      "name": "Qwen 2.5 72B",
+      "description": "The largest Qwen 2.5 family member; useful for high-capacity generation, reasoning, and large-context tasks."
+    },
+    {
+      "id": "perplexity/llama-3-sonar-small-32k-chat",
+      "name": "LLaMA 3 Sonar Small (32k chat)",
+      "description": "A variant optimized for longer chat context (32k tokens). Useful for conversations with large history or document-based chat."
+    },
+    {
+      "id": "gry-phe/mythomax-l2-13b",
+      "name": "Mythomax L2 13B",
+      "description": "Mythomax’s 13B model. Good mid-range model for text generation, creative writing, and chat."
+    },
+    {
+      "id": "nous/capybara-7b",
+      "name": "Capybara 7B",
+      "description": "Nous’s 7B model. Good for lightweight instruction tasks, chatbots, embeddings, and efficient inference."
+    },
+    {
+      "id": "google/gemini-2.5-pro",
+      "name": "Google Gemini 2.5 Pro (stable)",
+      "description": "Stable version of the Gemini 2.5 Pro model (after preview). Ideal for production use with advanced reasoning, multimodal tasks, and agentic workflows."
+    }
+  ]
+}

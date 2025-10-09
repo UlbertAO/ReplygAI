@@ -4,6 +4,7 @@ import { AuthService } from "./services/AuthService";
 import type { AuthState } from "./types";
 import APIKeyForm from "./components/APIKeyForm";
 import GeneralInfo from "./components/GeneralInfo";
+import { STORAGE_KEYS } from "./config";
 
 function App() {
   const [authState, setAuthState] = useState<AuthState>({
@@ -14,7 +15,9 @@ function App() {
 
   useEffect(() => {
     const fetchApiKey = async () => {
-      const storedApiKey = await AuthService.getStoredApiKey();
+      const storedApiKey = await AuthService.getStoredKeyValue(
+        STORAGE_KEYS.API_KEY
+      );
       chrome.storage.local.get("apiKeyError", (result) => {
         const error = result.apiKeyError || null;
         if (storedApiKey) {
